@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="nl_BE">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135030589-1"></script>
+    <script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-135030589-1');
+
+    </script>
+
+
+    <meta charset="utf-8">
+    <meta name='viewport' content='initial-scale=1, viewport-fit=cover'>
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/91a5d0f727.js"></script>
+    <script src="https://www.msbruggecentrum.be/js/maps.js" defer></script>
+    <script src="https://www.msbruggecentrum.be/js/ajax.js" defer></script>
+    <script src="https://www.msbruggecentrum.be/js/form.js" defer></script>
+
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500|Raleway:800|Dosis:700|Muli:300,900"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://www.msbruggecentrum.be/css/style_flex.css">
+    <link rel="stylesheet" href="https://www.msbruggecentrum.be/css/style_navigation.css">
+    <link rel="stylesheet" href="https://www.msbruggecentrum.be/css/style_aux.css">
+    <link rel="stylesheet" href="https://www.msbruggecentrum.be/css/style.css">
+    <link rel="stylesheet" href="https://www.msbruggecentrum.be/css/form.css">
+
+
+    <title>{{article.title}}</title>
+
+    <meta name="csrf-token" content="Mpv99HFTh343NA2fRFupgJA9kG5wozmvMHByDqmC">
+</head>
+<body>
+
+
+<div class='container' id="header">
+
+    <div class='row x-space-between y-center'>
+                        <a href='/' title='Startpagina'><img src="{%static 'photos/logo.gif'%}" alt=""></a>
+
+        <nav>
+
+            <input type="checkbox" id="show-menu" role="button">
+            <label for="show-menu" class="show-menu"></label>
+
+
+            <ul>
+                <li><a href='{% url "main:all_news"%}'>Новости</a></li>
+<!-- 		<li><a href='/inschrijven'>Inschrijven</a></li>	 -->
+		<li><a href='{% url "main:contact" %}'>Контакты</a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+
+</div>
+
+
+<div class="container banner">
+    <h2>{{article.title}}</h2>
+     <img src="{% static 'photos/banner.jpg' %}"/>
+</div>
+
+
+<div class="container  padding messages">
+    <div class="row padding">
+        <div class="item-5">
+            <img src="{{ article.image.url }}"/>
+        </div>
+        <div class="item">
+            <span class="date">{{article.created}}</span>
+            <h3>{{article.title}}</h3>
+            <p>{{article.textOfArtic}}
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container newsletter">
+    <div class="row">
+        <h2 class="item">Следите за нами внимательно с рассылкой</h2>
+        <!-- 			<p>De gratis nieuwsbrief informeert je met korte nieuwsberichten over gebeurtenissen op de school, je vindt er een kalender in met geplande activiteiten en allerhande zaken die de school belangrijk vindt.</p> -->
+    </div>
+
+    <div class="row padding">
+			<div class="item center">
+				<form id="mailinglist">
+					<input type="hidden" name="_token" value="Mpv99HFTh343NA2fRFupgJA9kG5wozmvMHByDqmC">					<input type="email" name="email" required placeholder="Введите почту">
+					<input type="submit" name="emailMailinglist" value="Держите меня в курсе!">
+				</form>
+				<h3 id="emailAdded">Vanaf nu blijft u op de hoogte van MS Brugge Centrum.</h3>
+			</div>
+		</div>
+
+</div>
+
+</div>
+
+
+<footer class="container">
+
+		<div class="row y-center">
+			<div class="">
+				<b class="nowrap">МОУ "Износковская СОШ"</b><br>
+				Средняя школа<br><br>
+				iznokischool@mail.ru
+			</div>
+
+			<div class="logos x-center">
+
+			</div>
+		</div>
+
+	</footer>
+
+<!-- Default Statcounter code for Middenschool Brugge
+Centrum https://msbruggecentrum.be -->
+<script type="text/javascript">
+var sc_project=11953426;
+var sc_invisible=1;
+var sc_security="904907ac";
+
+</script>
+<script type="text/javascript"
+        src="https://www.statcounter.com/counter/counter.js"
+        async></script>
+<noscript>
+    <div class="statcounter"><a title="Web Analytics"
+                                href="https://statcounter.com/" target="_blank"><img
+            class="statcounter"
+            src="https://c.statcounter.com/11953426/0/904907ac/1/"
+            alt="Web Analytics"></a></div>
+</noscript>
+<!-- End of Statcounter Code -->
+
+</body>
+</html>

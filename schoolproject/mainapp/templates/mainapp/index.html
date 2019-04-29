@@ -1,0 +1,273 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="nl_BE">
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135030589-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-135030589-1');
+		</script>
+
+
+		<meta charset="utf-8">
+		<meta name='viewport' content='initial-scale=1, viewport-fit=cover'>
+
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+
+		<!-- Scripts -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://use.fontawesome.com/91a5d0f727.js"></script>
+		<script src="https://www.msbruggecentrum.be/js/maps.js" defer></script>
+		<script src="https://www.msbruggecentrum.be/js/ajax.js" defer></script>
+		<script src="https://www.msbruggecentrum.be/js/form.js" defer></script>
+
+		<!-- Styles -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,500|Raleway:800|Dosis:700|Muli:300,900" rel="stylesheet">
+		<link rel="stylesheet" href="https://www.msbruggecentrum.be/css/style_flex.css">
+		<link rel="stylesheet" href="https://www.msbruggecentrum.be/css/style_navigation.css">
+		<link rel="stylesheet" href="https://www.msbruggecentrum.be/css/style_aux.css">
+		<link rel="stylesheet" href="https://www.msbruggecentrum.be/css/style.css">
+		<link rel="stylesheet" href="https://www.msbruggecentrum.be/css/form.css">
+
+
+
+		<meta name="csrf-token" content="Mpv99HFTh343NA2fRFupgJA9kG5wozmvMHByDqmC">
+	</head>
+	<body>
+
+
+		<div id="headervideo">
+		<video autoplay muted loop playsinline poster="{% static 'photos/banner.jpg' %}">
+		  <source src='{% static "video/head_vid.mp4" %}'>
+		  Your browser does not support HTML5 video.
+		</video>
+		</div>
+
+		<div class='container' id="heroheader">
+		 	<div class='column fluid'>
+	    	<div class='navigation'>
+
+	    		<div class='row x-space-between y-center'>
+	    			<div id='logo'><a href='/' title='Startpagina'></a></div>
+
+	    			<nav>
+
+    <input type="checkbox" id="show-menu" role="button">
+	<label for="show-menu" class="show-menu"></label>
+
+
+	<ul>
+		<!--<li>-->
+			<!--<a href='#'>De school <i class="fa fa-caret-down"></i></a>-->
+			<!--<ul id='sub'>-->
+				<!--<li><a href='visie'>Visie</a></li>-->
+				<!--<li><a href='team'>Team</a></li>-->
+<!--&lt;!&ndash; 				<li><a href='/in-beeld'>In beeld</a></li> &ndash;&gt;-->
+				<!--<li><a href='aanbod'>Aanbod</a></li>-->
+<!--&lt;!&ndash; 				<li><a href='/zorg'>Zorg</a></li> &ndash;&gt;-->
+			<!--</ul>-->
+		<!--</li>-->
+
+
+		<li><a href='{% url "main:all_news"%}'>Новости</a></li>
+<!-- 		<li><a href='/inschrijven'>Inschrijven</a></li>	 -->
+		<li><a href='{% url "main:contact" %}'>Контакты</a></li>
+	</ul>
+	</nav>
+
+	    		</div>
+
+
+	    	</div>
+
+	    	<div class='row x-space-between y-center '>
+		    	<div class="item-5 school-trumps align-self-end">
+
+
+			    </div>
+		    	<div class="item-5 slogan">
+			    	<h2>Добро пожаловать в изучение наук</h2>
+			    	<p><span class="nowrap">Официальный сайт МОУ "Износковская СОШ" <br> Калужской области</p>
+			    </div>
+	    	</div>
+	    	</div>
+
+	    </div>
+
+
+
+
+	<div class="container grey padding">
+		<div class="row news y-end">
+        {% for new in articles %}
+			<div class="item nopadding">
+					<img src="media/{{ new.image }}" >
+					<h3>{{new.title}}</h3>
+					<p>{{new.decription}}</p>
+				 <a href="{% url 'main:article_read' new.pk %}">Читать больше</a>
+			</div>
+        {% endfor %}
+			<a class="item-1 morenews" href="{% url 'main:all_news' %}"></a>
+		</div>
+
+	</div>
+
+
+
+	<div class="container image image1">
+		<div class="column padding y-start">
+			<h1>Школа — это мастерская, где формируется мысль подрастающего поколения, надо крепко держать ее в руках, если не хочешь выпустить из рук будущее.</h1>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="container grey calendar">
+		<div class="row y-center ">
+			{% for date in articles %}
+			<a href="{% url 'main:article_read' date.pk %}" class="event row flex-nowrap y-center">
+						<div class="date">
+							{{ date.created }}
+						</div>
+						<div class="name">{{ date.title }}</div>
+					</a>
+			{% endfor %}
+
+
+		</div>
+		<div class="row x-center">
+			<a class="seeall" href="{% url 'main:all_news' %}">Посмотреть полный календарь</a>
+		</div>
+
+	</div>
+
+
+
+
+	<div class="container newsletter">
+		<div class="row">
+			<h2 class="item">Следите за нами внимательно с рассылкой</h2>
+<!-- 			<p>De gratis nieuwsbrief informeert je met korte nieuwsberichten over gebeurtenissen op de school, je vindt er een kalender in met geplande activiteiten en allerhande zaken die de school belangrijk vindt.</p> -->
+		</div>
+
+		<div class="row padding">
+			<div class="item center">
+				<form id="mailinglist">
+					<input type="hidden" name="_token" value="Mpv99HFTh343NA2fRFupgJA9kG5wozmvMHByDqmC">					<input type="email" name="email" required placeholder="Введите почту">
+					<input type="submit" name="emailMailinglist" value="Держите меня в курсе!">
+				</form>
+				<h3 id="emailAdded">Vanaf nu blijft u op de hoogte van MS Brugge Centrum.</h3>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<div class="container padding">
+		<div class="row y-center">
+			<div class="item">
+				<div>
+					<h3>Основные сведения</h3>
+					<p>
+
+Полное наименование организации: Муниципальное общеобразовательное учреждение «Износковская средняя общеобразовательная школа».
+						<br>
+
+Краткое наименование организации: МОУ «Износковская СОШ». <br>
+
+Дата создания организации: Муниципальное общеобразовательное учреждение «Износковская средняя общеобразовательная школа учреждено 28 января 1998 года,
+						<br> постановлением Администрации муниципального образования «Износковский район» № 11,
+
+школа в селе Износки Калужской области (Износковская школа) открыта 22 октября 1904 года.</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<script>
+		$("#mailinglist").submit(function(e){
+		    e.preventDefault();
+
+		    $.ajax({
+		       type: 'POST',
+		       url: 'addEmailMailinglist',
+		       data: $("#mailinglist").serialize(),
+		       success:function(data){
+		        	if(data.success) {
+		            	emailAdded();
+		        	} else {
+		            	alert("Uw e-mailadres kon momenteel niet worden toegevoegd aan de nieuwsbrief. Gelieve het later opnieuw te proberen.");
+		        	}
+
+		       },
+		       error: function(data) {
+			   	  alert("An error occured. (Ajax request failed: possibly a bad internet connection.)");
+			   }
+		    });
+
+		});
+
+
+		function emailAdded() {
+			console.log("email added");
+			$("#mailinglist").toggle();
+			$("#emailAdded").toggle();
+		}
+	</script>
+
+
+
+
+
+
+
+
+<footer class="container">
+
+		<div class="row y-center">
+			<div class="">
+				<b class="nowrap">МОУ "Износковская СОШ"</b><br>
+				Средняя школа<br><br>
+				iznokischool@mail.ru
+			</div>
+
+			<div class="logos x-center">
+
+			</div>
+		</div>
+
+	</footer>
+
+<!-- Default Statcounter code for Middenschool Brugge
+Centrum https://msbruggecentrum.be -->
+<script type="text/javascript">
+var sc_project=11953426;
+var sc_invisible=1;
+var sc_security="904907ac";
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="https://c.statcounter.com/11953426/0/904907ac/1/"
+alt="Web Analytics"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
+	</body>
+</html>
