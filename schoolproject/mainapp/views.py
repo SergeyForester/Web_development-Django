@@ -26,8 +26,6 @@ def all_articles(request):
 	context = {'all_news':all_news}
 	return render(request, 'mainapp/all_articles.html', context)
 
-def func():
-	return 1
 
 
 
