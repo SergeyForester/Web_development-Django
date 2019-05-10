@@ -28,5 +28,5 @@ def all_articles(request):
 
 
 
-
+print()
 
