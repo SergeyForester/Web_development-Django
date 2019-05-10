@@ -25,8 +25,3 @@ def all_articles(request):
 	all_news = Article.objects.all()
 	context = {'all_news':all_news}
 	return render(request, 'mainapp/all_articles.html', context)
-
-
-
-
-
